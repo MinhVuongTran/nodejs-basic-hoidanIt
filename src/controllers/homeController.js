@@ -1,7 +1,6 @@
 import pool from '../configs/connectDB';
 
 const getHomePage = async (req, res) => {
-    let data = [];
     const [rows, fields] = await pool.execute('SELECT * FROM `users`');
     return res.render('index.ejs', {
         dataUsers: rows,
@@ -15,4 +14,15 @@ const getDetailPage = async (req, res) => {
     return res.json(user);
 };
 
-export { getHomePage, getDetailPage };
+const createUser = async (req, res) => {
+    let { firstName, lastName, age, email, address } = req.body;
+    await pool.execute('insert into `users` (firstName, lastName, age, email, address) values (?, ?, ?, ?, ?)', [
+        firstName,
+        lastName,
+        age,
+        email,
+        address,
+    ]);
+    return res.redirect('back');
+};
+export { getHomePage, getDetailPage, createUser };
