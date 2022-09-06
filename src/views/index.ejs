@@ -72,13 +72,20 @@
                             <td><%= data.age %></td>
                             <td><%= data.address %></td>
                             <td>
-                                <a class="btn btn-secondary" href="/detail/user/<%= data.id %>" role="button">Detail</a>
+                                <a class="btn btn-info text-light" href="/detail/user/<%= data.id %>" role="button"
+                                >
+                                    Detail
+                                </a>
                             </td>
                             <td>
-                                <a class="btn btn-primary" href="#" role="button">Edit</a>
+                                <form action="/edit/<%= data.id %>" method="GET">
+                                    <button type="submit" class="btn btn-success">Edit</button>
+                                </form>
                             </td>
                             <td>
-                                <a class="btn btn-danger" href="#" role="button">Remove</a>
+                                <form action="/delete/<%= data.id %>" method="POST">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         <% }) %>
